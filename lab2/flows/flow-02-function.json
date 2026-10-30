@@ -1,0 +1,76 @@
+[
+    {
+        "id": "04404b60993fe634",
+        "type": "tab",
+        "label": "Поток 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "089ae40f9194393c",
+        "type": "inject",
+        "z": "04404b60993fe634",
+        "name": "5",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 380,
+        "wires": [
+            [
+                "9f4d337a641e2955"
+            ]
+        ]
+    },
+    {
+        "id": "9f4d337a641e2955",
+        "type": "function",
+        "z": "04404b60993fe634",
+        "name": "function 1",
+        "func": "// Получаем входящее сообщение\nlet input = msg.payload; \nlet resultArray = [];\n\n// Проверяем, что пришло число (используем if/else)\nif (typeof input === 'number') {\n    \n    // Используем цикл for для создания массива\n    for (let i = 1; i <= input; i++) {\n        resultArray.push(i * 10); // умножаем каждое число на 10\n    }\n    \n    // Создаем объект с результатом\n    let resultObject = {\n        originalNumber: input,\n        message: \"Успешно обработано\",\n        processedArray: resultArray\n    };\n    \n    // Возвращаем объект в msg.payload\n    msg.payload = resultObject;\n    \n} else {\n    // Если пришла не цифра, возвращаем ошибку\n    msg.payload = \"Ошибка: ожидалось число!\";\n}\n\n// Обязательно возвращаем msg в конце\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 380,
+        "wires": [
+            [
+                "87757d5a20f783f4"
+            ]
+        ]
+    },
+    {
+        "id": "87757d5a20f783f4",
+        "type": "debug",
+        "z": "04404b60993fe634",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 380,
+        "wires": []
+    }
+]
