@@ -1,0 +1,126 @@
+[
+    {
+        "id": "b23bc93cefc3edda",
+        "type": "tab",
+        "label": "Поток 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "56852253deda1371",
+        "type": "debug",
+        "z": "b23bc93cefc3edda",
+        "name": "Выход 1 (large)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 280,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "2b827f6fe37b6482",
+        "type": "debug",
+        "z": "b23bc93cefc3edda",
+        "name": "Выход 2 (small)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 120,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "4ab719bf368b206b",
+        "type": "switch",
+        "z": "b23bc93cefc3edda",
+        "name": "",
+        "property": "payload.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ok",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "error",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 110,
+        "y": 500,
+        "wires": [
+            [
+                "56852253deda1371"
+            ],
+            [
+                "2b827f6fe37b6482"
+            ]
+        ]
+    },
+    {
+        "id": "2a6865aff0d1cddf",
+        "type": "function",
+        "z": "b23bc93cefc3edda",
+        "name": "function 2",
+        "func": "let input = msg.payload;\nlet resultArray = [];\n\n// Жесткая проверка: это должно быть число, и оно должно быть больше 0\nif (typeof input === 'number' && input > 0) {\n    \n    for (let i = 1; i <= input; i++) {\n        resultArray.push(i * 10); // умножаем на 10\n    }\n    \n    msg.payload = {\n        original: input,\n        status: \"ok\",\n        array: resultArray\n    };\n} else {\n    // Если это не число, мы не запускаем цикл, а выдаем ошибку\n    msg.payload = {\n        status: \"error\",\n        message: \"Ожидалось положительное число\"\n    };\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 440,
+        "wires": [
+            [
+                "4ab719bf368b206b"
+            ]
+        ]
+    },
+    {
+        "id": "bd7933ba0287ecf7",
+        "type": "inject",
+        "z": "b23bc93cefc3edda",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "5",
+        "payloadType": "num",
+        "x": 50,
+        "y": 420,
+        "wires": [
+            [
+                "2a6865aff0d1cddf"
+            ]
+        ]
+    }
+]
