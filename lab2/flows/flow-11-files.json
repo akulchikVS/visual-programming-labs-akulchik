@@ -1,0 +1,134 @@
+[
+    {
+        "id": "103b763620d0f3d7",
+        "type": "inject",
+        "z": "13c143ba1b4eda69",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Привет, это данные из Node-RED!",
+        "payloadType": "str",
+        "x": 120,
+        "y": 180,
+        "wires": [
+            [
+                "259ac4c68fa73390"
+            ]
+        ]
+    },
+    {
+        "id": "259ac4c68fa73390",
+        "type": "function",
+        "z": "13c143ba1b4eda69",
+        "name": "function 7",
+        "func": "let now = new Date().toLocaleString();\nmsg.payload = `Время записи: ${now}\\nТекст: ${msg.payload}`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 260,
+        "wires": [
+            [
+                "6ff7e7392148518a"
+            ]
+        ]
+    },
+    {
+        "id": "6ff7e7392148518a",
+        "type": "file",
+        "z": "13c143ba1b4eda69",
+        "name": "",
+        "filename": "/data/test-file.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 180,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e3a5abb91a27b21f",
+        "type": "file in",
+        "z": "13c143ba1b4eda69",
+        "name": "",
+        "filename": "/data/test-file.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 220,
+        "y": 500,
+        "wires": [
+            [
+                "f45060e0fc1a75e7"
+            ]
+        ]
+    },
+    {
+        "id": "d0267d9971d93e0e",
+        "type": "inject",
+        "z": "13c143ba1b4eda69",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 440,
+        "wires": [
+            [
+                "e3a5abb91a27b21f"
+            ]
+        ]
+    },
+    {
+        "id": "f45060e0fc1a75e7",
+        "type": "debug",
+        "z": "13c143ba1b4eda69",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 220,
+        "y": 560,
+        "wires": []
+    }
+]
