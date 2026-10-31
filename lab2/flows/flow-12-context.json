@@ -1,0 +1,76 @@
+[
+    {
+        "id": "e5b0e91fe701ad4d",
+        "type": "tab",
+        "label": "Поток 12",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "cd4b452a8f88ac80",
+        "type": "inject",
+        "z": "e5b0e91fe701ad4d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 200,
+        "wires": [
+            [
+                "086da6e7bbeb7948"
+            ]
+        ]
+    },
+    {
+        "id": "086da6e7bbeb7948",
+        "type": "function",
+        "z": "e5b0e91fe701ad4d",
+        "name": "function 8",
+        "func": "// Получаем текущее значение счетчика из контекста потока (flow)\n// Если счетчика еще нет, он равен 0\nlet counter = flow.get('myCounter') || 0;\n\n// Увеличиваем счетчик на 1\ncounter = counter + 1;\n\n// Сохраняем новое значение обратно в контекст\nflow.set('myCounter', counter);\n\n// Отправляем значение в сообщение для отладки\nmsg.payload = \"Счетчик сработал: \" + counter + \" раз(а)\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 280,
+        "wires": [
+            [
+                "4c0e238c15cd4253"
+            ]
+        ]
+    },
+    {
+        "id": "4c0e238c15cd4253",
+        "type": "debug",
+        "z": "e5b0e91fe701ad4d",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 180,
+        "y": 360,
+        "wires": []
+    }
+]
