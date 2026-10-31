@@ -1,0 +1,148 @@
+[
+    {
+        "id": "f8c265b9da99db98",
+        "type": "http in",
+        "z": "462a8cbdc9ea5592",
+        "name": "",
+        "url": "/api/text",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 140,
+        "wires": [
+            [
+                "b844e75851caa759"
+            ]
+        ]
+    },
+    {
+        "id": "b844e75851caa759",
+        "type": "template",
+        "z": "462a8cbdc9ea5592",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Привет! Это простой текстовый ответ.",
+        "output": "str",
+        "x": 180,
+        "y": 200,
+        "wires": [
+            [
+                "69cfda77f522764e"
+            ]
+        ]
+    },
+    {
+        "id": "69cfda77f522764e",
+        "type": "http response",
+        "z": "462a8cbdc9ea5592",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 190,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f9766d8edef25157",
+        "type": "http in",
+        "z": "462a8cbdc9ea5592",
+        "name": "",
+        "url": "/api/info",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 360,
+        "wires": [
+            [
+                "a920556cd0958a28"
+            ]
+        ]
+    },
+    {
+        "id": "a920556cd0958a28",
+        "type": "function",
+        "z": "462a8cbdc9ea5592",
+        "name": "function 3",
+        "func": "msg.payload = {\n    \"status\": \"success\",\n    \"message\": \"Это JSON ответ с двумя полями\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 420,
+        "wires": [
+            [
+                "79be8812a4f8821b"
+            ]
+        ]
+    },
+    {
+        "id": "79be8812a4f8821b",
+        "type": "http response",
+        "z": "462a8cbdc9ea5592",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 210,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "726eb8c7d8512477",
+        "type": "http in",
+        "z": "462a8cbdc9ea5592",
+        "name": "",
+        "url": "/api/items/:id",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 540,
+        "wires": [
+            [
+                "63c9565fa015dd9a"
+            ]
+        ]
+    },
+    {
+        "id": "63c9565fa015dd9a",
+        "type": "function",
+        "z": "462a8cbdc9ea5592",
+        "name": "function 4",
+        "func": "// Получаем параметр id из URL\nlet id = msg.req.params.id;\nlet numId = parseInt(id);\n\n// Проверяем на ошибки\nif (numId === 0) {\n    msg.statusCode = 400; // Bad Request\n    msg.payload = { \"error\": \"ID не может быть равен 0\" };\n} else if (numId > 100) {\n    msg.statusCode = 404; // Not Found\n    msg.payload = { \"error\": \"Элемент с таким ID не найден\" };\n} else {\n    msg.statusCode = 200; // OK\n    msg.payload = {\n        \"id\": numId,\n        \"name\": \"Элемент \" + numId,\n        \"message\": \"Успешно найдено\"\n    };\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 600,
+        "wires": [
+            [
+                "f461128d4a7bbd72"
+            ]
+        ]
+    },
+    {
+        "id": "f461128d4a7bbd72",
+        "type": "http response",
+        "z": "462a8cbdc9ea5592",
+        "name": "",
+        "statusCode": "msg.statusCode",
+        "headers": {},
+        "x": 300,
+        "y": 660,
+        "wires": []
+    }
+]
