@@ -1,0 +1,170 @@
+[
+    {
+        "id": "ae226550074a4333",
+        "type": "inject",
+        "z": "87ffad774095bd0e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "25",
+        "payloadType": "num",
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "358897c719af9fe6"
+            ]
+        ]
+    },
+    {
+        "id": "358897c719af9fe6",
+        "type": "function",
+        "z": "87ffad774095bd0e",
+        "name": "function 5",
+        "func": "// Берем входящее число\nlet baseTemp = msg.payload;\n\n// Генерируем случайное отклонение от -2 до +2 градусов\nlet randomDeviation = (Math.random() * 4) - 2;\n\n// Вычисляем новую температуру и округляем до 1 знака\nlet currentTemp = baseTemp + randomDeviation;\nmsg.payload = Math.round(currentTemp * 10) / 10;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 340,
+        "wires": [
+            [
+                "83a92e358246d595",
+                "5f9329d396ce8a97"
+            ]
+        ]
+    },
+    {
+        "id": "83a92e358246d595",
+        "type": "ui_gauge",
+        "z": "87ffad774095bd0e",
+        "name": "",
+        "group": "4b8d260102bd2caf",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "температура",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 190,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "5f9329d396ce8a97",
+        "type": "ui_chart",
+        "z": "87ffad774095bd0e",
+        "name": "",
+        "group": "4fc326a6675c2fb0",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "История температуры",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 250,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4b8d260102bd2caf",
+        "type": "ui_group",
+        "name": "Датчик температуры",
+        "tab": "6e2be14d5c565efa",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4fc326a6675c2fb0",
+        "type": "ui_group",
+        "name": "Датчик температуры",
+        "tab": "2f6ff47591b17b20",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6e2be14d5c565efa",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "2f6ff47591b17b20",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c56afffc2299cc35",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
