@@ -1,0 +1,100 @@
+[
+    {
+        "id": "ccbe2fd1f5aaff23",
+        "type": "tab",
+        "label": "Поток 10",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6b56460850eef658",
+        "type": "telegram receiver",
+        "z": "ccbe2fd1f5aaff23",
+        "name": "@akulchik_lab2_bot",
+        "bot": "3ad398e150c478c9",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "hasinput": true,
+        "inputs": 1,
+        "handleallupdates": false,
+        "handleprocessupdates": false,
+        "x": 110,
+        "y": 360,
+        "wires": [
+            [
+                "32b93671d80f3083"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "32b93671d80f3083",
+        "type": "function",
+        "z": "ccbe2fd1f5aaff23",
+        "name": "function 6",
+        "func": "// Получаем текст сообщения от пользователя\nlet text = msg.payload.content;\nlet chatId = msg.payload.chatId;\nlet responseText = \"\";\n\n// Проверяем команды\nif (text === '/start') {\n    responseText = \"Привет! Я бот для лабораторной работы №2. Напиши /lab2, чтобы узнать подробности.\";\n} else if (text === '/lab2') {\n    responseText = \"Этот бот создан в рамках изучения Node-RED. Я умею отвечать на команды и повторять текст (эхо).\";\n} else {\n    // Эхо-ответ\n    responseText = \"Вы написали: \" + text;\n}\n\n// Формируем сообщение для отправки обратно в Telegram\nmsg.payload = {\n    chatId: chatId,\n    type: \"message\",\n    content: responseText\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 420,
+        "wires": [
+            [
+                "19ed8531567fcc02"
+            ]
+        ]
+    },
+    {
+        "id": "19ed8531567fcc02",
+        "type": "telegram sender",
+        "z": "ccbe2fd1f5aaff23",
+        "name": "",
+        "bot": "3ad398e150c478c9",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 130,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3ad398e150c478c9",
+        "type": "telegram bot",
+        "botname": "Lab2Bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "93b77b9c02e5522a",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-telegrambot": "19.0.3"
+        }
+    }
+]
