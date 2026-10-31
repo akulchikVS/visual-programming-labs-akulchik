@@ -1,0 +1,80 @@
+[
+    {
+        "id": "06d09f33a8d9385f",
+        "type": "tab",
+        "label": "Поток 6",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "09b0b44216180bc8",
+        "type": "inject",
+        "z": "06d09f33a8d9385f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 280,
+        "wires": [
+            [
+                "f0fbe55473f94b7d"
+            ]
+        ]
+    },
+    {
+        "id": "f0fbe55473f94b7d",
+        "type": "http request",
+        "z": "06d09f33a8d9385f",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://catfact.ninja/fact",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "d02c47b64f15fdf1"
+            ]
+        ]
+    },
+    {
+        "id": "d02c47b64f15fdf1",
+        "type": "debug",
+        "z": "06d09f33a8d9385f",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 160,
+        "y": 400,
+        "wires": []
+    }
+]
