@@ -1,0 +1,63 @@
+{
+  "name": "Akulchik-06-Schedule",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "80d56b5f-8ccd-4593-85e3-028d8d693def",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\nreturn [{ json: { currentTime: now.toISOString(), message: \"Akulchik schedule at \" + now.toLocaleString() } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "b28a3e70-1d20-44b1-a0fc-e73ce99e0b15",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "af7870cb-a831-4b18-ad97-28d7d2f49e73",
+  "meta": {
+    "instanceId": "83ab8e5821fb87aa9aee0a91b4a6c05d9be7873c6e28a1ef01d1f21e98acb822"
+  },
+  "nodeGroups": [],
+  "id": "FfCkORlYgbAvAepa",
+  "tags": []
+}
