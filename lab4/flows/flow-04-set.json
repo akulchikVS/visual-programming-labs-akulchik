@@ -1,0 +1,101 @@
+{
+  "name": "Akulchik-04-Set",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "fd87a2b7-93eb-4b0d-a89c-0b470bd67dd4",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0cbeda70-d46c-4d5b-8cce-1c94d32152f5",
+              "name": "topic",
+              "value": "lab4/akulchik/set",
+              "type": "string"
+            },
+            {
+              "id": "73c9c84c-0184-4df2-8d54-b24474dac605",
+              "name": "timestamp",
+              "value": "={{ $now }}",
+              "type": "string"
+            },
+            {
+              "id": "8d110486-ea7d-43f0-ae1f-685cb9896486",
+              "name": "payload",
+              "value": "Akulchik data",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "1d6f54c5-7d91-4794-aa85-6f97a061f201",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "console.log(\"Complete msg object:\", JSON.stringify($input.first().json, null, 2));\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "9813826f-deac-4972-bc89-0f6ae07238ba",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "1b8e7354-ae93-4748-bd37-96e87be2edc1",
+  "meta": {
+    "instanceId": "83ab8e5821fb87aa9aee0a91b4a6c05d9be7873c6e28a1ef01d1f21e98acb822"
+  },
+  "nodeGroups": [],
+  "id": "SMOaPkTopqhMPN1c",
+  "tags": []
+}

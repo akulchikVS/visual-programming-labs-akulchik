@@ -1,0 +1,80 @@
+{
+  "name": "Akulchik-05-HTTP",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "5e8e2d75-6565-41c5-91bb-f7819fdab0ae",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://api.chucknorris.io/jokes/random",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "ad3300f5-89d7-4345-b835-e9a34c2885e9",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "console.log(\"HTTP Response:\", JSON.stringify($input.first().json, null, 2));\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "1c3d4485-852d-4413-ad0f-98596523e761",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "cff6a5af-a907-4025-a437-0b1c05106420",
+  "meta": {
+    "instanceId": "83ab8e5821fb87aa9aee0a91b4a6c05d9be7873c6e28a1ef01d1f21e98acb822"
+  },
+  "nodeGroups": [],
+  "id": "ETqxJ0D6InVxxPWW",
+  "tags": []
+}
