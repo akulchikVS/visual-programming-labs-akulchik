@@ -1,0 +1,76 @@
+{
+  "name": "Akulchik-Achievement-LocalAI",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8a31b442-1f97-45a7-a02e-4a502bb9a4cd",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "llama-3.2-1b-instruct:q4_k_m",
+          "mode": "list",
+          "cachedResultName": "LLAMA-3.2-1B-INSTRUCT:Q4_K_M"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "Привет! Напиши короткий факт о программировании."
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        224,
+        0
+      ],
+      "id": "7d625cc6-3f32-48e3-9cf6-8d8bf58b391e",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "QSzvyr9O3js0cflm",
+          "name": "LocalAI Akulchik"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "399df95a-5a25-4f96-82cd-f3fc24e582c9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "83ab8e5821fb87aa9aee0a91b4a6c05d9be7873c6e28a1ef01d1f21e98acb822"
+  },
+  "nodeGroups": [],
+  "id": "GG1NZVsTtXg8hTNl",
+  "tags": []
+}
