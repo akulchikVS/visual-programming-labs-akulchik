@@ -1,0 +1,95 @@
+{
+  "name": "Akulchik-01-ManualSet",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        0
+      ],
+      "id": "ad1249c2-feb6-4bdf-8c08-cd4c45144f58",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f53dd5ed-34d9-4a68-a176-438c22af6eeb",
+              "name": "payload",
+              "value": "Akulchik",
+              "type": "string"
+            },
+            {
+              "id": "19a4caa1-a15f-45a1-a84d-a89b1324b0c0",
+              "name": "topic",
+              "value": "lab4/akulchik/basic",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        16,
+        0
+      ],
+      "id": "97b2cd6e-5773-4659-8e46-2ad10bda74f9",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "console.log(\"Payload:\", $input.first().json.payload);\nconsole.log(\"Topic:\", $input.first().json.topic);\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "4e9bd6c6-b88c-4cd5-bf21-eb6c1ec2e939",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "5684c248-93b8-4af5-93a4-b4f6d35a6816",
+  "meta": {
+    "instanceId": "83ab8e5821fb87aa9aee0a91b4a6c05d9be7873c6e28a1ef01d1f21e98acb822"
+  },
+  "nodeGroups": [],
+  "id": "u5T0Lm4Xm1hdCTSa",
+  "tags": []
+}
