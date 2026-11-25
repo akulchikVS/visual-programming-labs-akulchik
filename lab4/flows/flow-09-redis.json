@@ -1,0 +1,96 @@
+{
+  "name": "Akulchik-09-Redis-SetGet",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -32
+      ],
+      "id": "c072e437-277c-4608-83c9-8fdf2b174e49",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "akulchik",
+        "value": "Hello from Akulchik Lab4"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        64,
+        -32
+      ],
+      "id": "30be258f-0f5e-46bf-b391-be8394bc67d8",
+      "name": "Redis",
+      "credentials": {
+        "redis": {
+          "id": "8BGz7QVA3X5QOYry",
+          "name": "Redis Akulchik"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "akulchik",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        288,
+        -32
+      ],
+      "id": "4e10f2ed-9981-45e2-9114-081b4eef8c31",
+      "name": "Redis1",
+      "credentials": {
+        "redis": {
+          "id": "8BGz7QVA3X5QOYry",
+          "name": "Redis Akulchik"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Redis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis": {
+      "main": [
+        [
+          {
+            "node": "Redis1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "9f8d2e1b-b353-4f72-939f-d5f196dd96ed",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "83ab8e5821fb87aa9aee0a91b4a6c05d9be7873c6e28a1ef01d1f21e98acb822"
+  },
+  "nodeGroups": [],
+  "id": "aU6fZQG2xbahprHY",
+  "tags": []
+}

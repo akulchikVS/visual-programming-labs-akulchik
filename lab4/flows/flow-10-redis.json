@@ -1,0 +1,95 @@
+{
+  "name": "Akulchik-10-Redis-DeleteCheck",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        16
+      ],
+      "id": "5fe1cfc9-3b70-4dc8-8dcd-5821a1690fbe",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "akulchik",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        224,
+        16
+      ],
+      "id": "d9f933a3-3314-4778-9f82-a86dbc9d61b9",
+      "name": "Redis",
+      "credentials": {
+        "redis": {
+          "id": "8BGz7QVA3X5QOYry",
+          "name": "Redis Akulchik"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "akulchik"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        0,
+        16
+      ],
+      "id": "24841f7d-4d9b-4f01-a1d2-7dea9bd1c0e4",
+      "name": "Redis1",
+      "credentials": {
+        "redis": {
+          "id": "8BGz7QVA3X5QOYry",
+          "name": "Redis Akulchik"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Redis1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis1": {
+      "main": [
+        [
+          {
+            "node": "Redis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "acd51e04-1d19-44d3-b6f5-f3259d0d9a64",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "83ab8e5821fb87aa9aee0a91b4a6c05d9be7873c6e28a1ef01d1f21e98acb822"
+  },
+  "nodeGroups": [],
+  "id": "cYVtXGyQbcDYneqO",
+  "tags": []
+}
