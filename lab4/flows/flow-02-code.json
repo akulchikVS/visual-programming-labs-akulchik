@@ -1,0 +1,55 @@
+{
+  "name": "Akulchik-02-Code",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        16
+      ],
+      "id": "00c5c4d0-d07e-4f3c-bcf2-41f74ed56875",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nlet results = [];\nconst prefix = \"Akulchik\";\n\nfor (let i = 0; i < 3; i++) {\n  if (i % 2 === 0) {\n    results.push({ index: i, type: \"even\", name: prefix + \"-\" + i });\n  } else {\n    results.push({ index: i, type: \"odd\", name: prefix + \"-\" + i });\n  }\n}\n\nconst finalObject = {\n  payload: \"Processed by \" + prefix,\n  results: results,\n  count: results.length\n};\n\nreturn [{ json: finalObject }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        48,
+        16
+      ],
+      "id": "a8361ee2-7e0e-419e-a4a2-d17d52864da9",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "74175b28-02bf-461f-9ba2-6e0ab9f28327",
+  "meta": {
+    "instanceId": "83ab8e5821fb87aa9aee0a91b4a6c05d9be7873c6e28a1ef01d1f21e98acb822"
+  },
+  "nodeGroups": [],
+  "id": "33Iy9srK0QUgcutL",
+  "tags": []
+}
